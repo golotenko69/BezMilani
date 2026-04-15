@@ -171,7 +171,13 @@ def menu():
     if "user" not in session:
         return redirect("/")
     users = load_users()
-    user = users[session["user"]]
+    username = session.get('user')
+
+    if username not in users:
+        session.clear()
+        return redirect("/")
+
+    user = users[username]
     return render_template("menu.html", user=user, name=session["user"],
                            level=get_level(user.get("xp", 0)), xp=user.get("xp", 0))
 
@@ -188,8 +194,15 @@ def duel_queue():
     if "user" not in session:
         return jsonify({"error": "Not logged in"}), 401
 
-    username = session["user"]
+
     users = load_users()
+    username = session.get('user')
+
+    if username not in users:
+        session.clear()
+        return redirect("/")
+
+    user = users[username]
     duels = load_duels()
     user_elo = users[username].get("elo", 1200)
     user_skin = users[username].get("skin", "#ef4444")
@@ -385,6 +398,13 @@ def duel_answer(duel_id):
         finished = True
 
         users = load_users()
+        username = session.get('user')
+
+        if username not in users:
+            session.clear()
+            return redirect("/")
+
+        user = users[username]
         bots = load_bots()
 
         if duel["player_score"] > duel["opponent_score"]:
