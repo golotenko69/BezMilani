@@ -624,7 +624,7 @@ def duel():
 @app.route('/duel/<mode>')
 @login_required
 def duel_with_mode(mode):
-    return render_template("duel_game.html", mode=mode)
+    return render_template("duel.html", mode=mode)
 
 
 # ============== API ДРУЗЕЙ ==============
