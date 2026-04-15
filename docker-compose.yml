@@ -1,0 +1,15 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  brain-trainer:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - SECRET_KEY=your-secret-key-here
+      - FLASK_ENV=production
+    restart: unless-stopped

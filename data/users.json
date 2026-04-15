@@ -459,5 +459,34 @@
       "color": "#f97316",
       "icon": "fa-user-ninja"
     }
+  },
+  "БоссНикитос": {
+    "records": {
+      "math": 75,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0
+    },
+    "history": [
+      75,
+      0
+    ],
+    "xp": 38,
+    "perfect_runs": 0,
+    "max_combo": 3,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#f97316",
+    "avatar": {
+      "color": "#fbbf24",
+      "icon": "fa-user-secret"
+    }
   }
 }

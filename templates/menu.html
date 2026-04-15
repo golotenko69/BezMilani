@@ -83,6 +83,61 @@
         .leaderboard-item .xp-value { font-size: 20px; color: #22c55e; }
         .you-badge { background: #38bdf8; color: #0a0a0f; padding: 2px 10px; border-radius: 20px; font-size: 11px; margin-left: 10px; }
         @media (max-width: 900px) { .games-grid { grid-template-columns: 1fr; } .duel-card { grid-column: span 1; } .profile-stats { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Friends styles */
+        .friends-container { max-width: 800px; margin: 0 auto; }
+        .friends-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .friends-header h1 { font-size: 28px; display: flex; align-items: center; gap: 10px; }
+        .btn-primary { padding: 12px 20px; background: linear-gradient(135deg, #38bdf8, #22c55e); border: none; border-radius: 10px; color: #0f172a; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        .btn-secondary { padding: 8px 16px; background: #334155; border: none; border-radius: 8px; color: white; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-secondary:hover { background: #475569; }
+        .btn-danger { padding: 8px 16px; background: #7f1d1d; border: none; border-radius: 8px; color: white; cursor: pointer; transition: 0.2s; }
+        .btn-danger:hover { background: #991b1b; }
+        .search-section { margin-bottom: 30px; }
+        .search-box { display: flex; align-items: center; background: #1e293b; border-radius: 12px; padding: 12px 16px; border: 2px solid #334155; transition: 0.2s; }
+        .search-box:focus-within { border-color: #38bdf8; }
+        .search-box i { color: #64748b; margin-right: 10px; }
+        .search-box input { flex: 1; background: none; border: none; color: white; font-size: 16px; outline: none; }
+        .search-results { margin-top: 10px; background: #1e293b; border-radius: 12px; overflow: hidden; }
+        .search-result-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #334155; }
+        .search-result-item:last-child { border-bottom: none; }
+        .user-info { display: flex; align-items: center; gap: 12px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; }
+        .user-name { font-weight: 500; color: white; }
+        .user-level { font-size: 12px; color: #94a3b8; }
+        .online-indicator { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; margin-right: 6px; }
+        .offline-indicator { background: #64748b; }
+        .friends-list h3 { margin-bottom: 20px; color: #94a3b8; font-size: 16px; font-weight: 400; }
+        .friend-card { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: linear-gradient(145deg, #1e293b, #0f172a); border-radius: 12px; margin-bottom: 10px; transition: 0.2s; }
+        .friend-card:hover { transform: translateX(5px); background: linear-gradient(145deg, #334155, #1e293b); }
+        .friend-info { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .friend-stats { display: flex; gap: 20px; font-size: 13px; color: #94a3b8; }
+        .friend-actions { display: flex; gap: 8px; }
+        .requests-section { margin-bottom: 20px; }
+        .request-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; margin-bottom: 8px; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; }
+        .modal-content { background: linear-gradient(145deg, #1e293b, #0f172a); border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; border: 1px solid rgba(56, 189, 248, 0.3); animation: modalSlideIn 0.3s ease; }
+        .modal-small { max-width: 400px; }
+        @keyframes modalSlideIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #94a3b8; cursor: pointer; transition: 0.2s; }
+        .close:hover { color: white; }
+        .mode-selector { margin: 20px 0; }
+        .mode-selector label { display: block; color: #94a3b8; margin-bottom: 8px; }
+        .mode-selector select { width: 100%; padding: 12px; background: #0f172a; border: 2px solid #334155; border-radius: 10px; color: white; font-size: 16px; outline: none; }
+        .profile-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
+        .stat-item { background: #0f172a; padding: 15px; border-radius: 10px; text-align: center; }
+        .stat-item .label { font-size: 12px; color: #94a3b8; }
+        .stat-item .value { font-size: 20px; font-weight: bold; color: #38bdf8; }
+        .achievements-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .achievement-badge { padding: 8px 12px; background: rgba(56, 189, 248, 0.2); border-radius: 20px; font-size: 12px; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(56, 189, 248, 0.3); }
+        @media (max-width: 768px) {
+            .friends-header { flex-direction: column; gap: 15px; align-items: stretch; }
+            .friend-card { flex-direction: column; gap: 15px; align-items: stretch; }
+            .friend-actions { justify-content: center; }
+            .friend-stats { justify-content: center; }
+            .modal-content { padding: 20px; width: 95%; }
+        }
     </style>
 </head>
 <body>
@@ -94,13 +149,15 @@
             </div>
             <div class="nav-item active" onclick="switchTab('games')"><i class="fas fa-home"></i><span>Главная</span></div>
             <div class="nav-item" onclick="switchTab('profile')"><i class="fas fa-user-circle"></i><span>Профиль</span></div>
+            <div class="nav-item" onclick="switchTab('friends')"><i class="fas fa-users"></i><span>Друзья</span></div>
             <div class="nav-item" onclick="switchTab('leaderboard')"><i class="fas fa-trophy"></i><span>Рейтинг</span></div>
-            <div class="sidebar-footer"><a href="/"><i class="fas fa-sign-out-alt"></i><span>Выйти</span></a></div>
+            <div class="sidebar-footer"><a href="/logout"><i class="fas fa-sign-out-alt"></i><span>Выйти</span></a></div>
         </div>
 
         <div class="main">
+            <!-- Главная вкладка -->
             <div id="games" class="tab-content active">
-                <h1>👋 Привет, {{ name }}!</h1>
+                <h1>👋 Привет, {{ name if name else 'Пользователь' }}!</h1>
                 <p class="greeting">Выбери игру и тренируй мозг</p>
                 <div class="games-grid">
                     <div class="game-card"><div class="game-header"><i class="fas fa-calculator" style="color:#ff4757;"></i><h3>Математика</h3></div><div class="game-links"><a href="/game/math" class="game-link"><span>⚡ Быстрый счёт</span><i class="fas fa-arrow-right"></i></a><a href="/game/math_chain" class="game-link"><span>🔗 Цепочки</span><i class="fas fa-arrow-right"></i></a><a href="/game/math_compare" class="game-link"><span>⚖️ Сравнение</span><i class="fas fa-arrow-right"></i></a></div></div>
@@ -111,42 +168,103 @@
                 <div class="info-panel">
                     <div class="info-card"><i class="fas fa-chart-line"></i><div><div class="info-label">Уровень</div><div class="info-value">{{ level }}</div></div></div>
                     <div class="info-card"><i class="fas fa-star"></i><div><div class="info-label">Опыт</div><div class="info-value">{{ xp }} XP</div></div></div>
-                    <div class="info-card"><i class="fas fa-gamepad"></i><div><div class="info-label">Игр</div><div class="info-value">{{ user.history|length }}</div></div></div>
+                    <div class="info-card"><i class="fas fa-gamepad"></i><div><div class="info-label">Игр</div><div class="info-value">{{ history|length if history else 0 }}</div></div></div>
                 </div>
             </div>
 
+            <!-- Профиль -->
             <div id="profile" class="tab-content">
                 <div class="profile-header">
-                    <div class="profile-avatar" style="background: {{ user.avatar.color if user.avatar else '#38bdf8' }};">
-                        {% if user.avatar and user.avatar.icon %}
-                            <i class="fas {{ user.avatar.icon }}"></i>
+                    <div class="profile-avatar" style="background: {{ user.avatar_color if user else '#38bdf8' }};">
+                        {% if user and user.avatar_icon %}
+                            <i class="fas {{ user.avatar_icon }}"></i>
                         {% else %}
-                            <span>{{ name[0].upper() }}</span>
+                            <span>{{ name[0].upper() if name else 'U' }}</span>
                         {% endif %}
                     </div>
                     <div class="profile-title">
-                        <h1>{{ name }}</h1>
+                        <h1>{{ name if name else 'Пользователь' }}</h1>
                         <span class="profile-level">Уровень {{ level }}</span>
                     </div>
                 </div>
                 <div class="profile-stats">
                     <div class="stat-card"><i class="fas fa-star"></i><div class="stat-label">Опыт</div><div class="stat-value">{{ xp }} XP</div></div>
-                    <div class="stat-card"><i class="fas fa-trophy"></i><div class="stat-label">Идеально</div><div class="stat-value">{{ user.perfect_runs }}</div></div>
-                    <div class="stat-card"><i class="fas fa-fire"></i><div class="stat-label">Макс. комбо</div><div class="stat-value">x{{ user.max_combo }}</div></div>
-                    <div class="stat-card"><i class="fas fa-chart-bar"></i><div class="stat-label">Всего игр</div><div class="stat-value">{{ user.history|length }}</div></div>
+                    <div class="stat-card"><i class="fas fa-trophy"></i><div class="stat-label">Идеально</div><div class="stat-value">{{ user.perfect_runs if user else 0 }}</div></div>
+                    <div class="stat-card"><i class="fas fa-fire"></i><div class="stat-label">Макс. комбо</div><div class="stat-value">x{{ user.max_combo if user else 0 }}</div></div>
+                    <div class="stat-card"><i class="fas fa-chart-bar"></i><div class="stat-label">Всего игр</div><div class="stat-value">{{ history|length if history else 0 }}</div></div>
                 </div>
-                <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>Прогресс</span><span>{{ xp }} / {{ level * 100 }} XP</span></div><div class="xp-bar"><div class="xp-fill" style="width: {{ (xp % 100) / 100 * 100 }}%;"></div></div></div>
+                <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>Прогресс</span><span>{{ xp }} / {{ level * 100 }} XP</span></div><div class="xp-bar"><div class="xp-fill" style="width: {{ (xp % 100) / 100 * 100 if xp else 0 }}%;"></div></div></div>
                 <div class="profile-tabs"><button class="profile-tab active" onclick="showProfileSubtab('records')">🏅 Рекорды</button><button class="profile-tab" onclick="showProfileSubtab('history')">📊 История</button></div>
+
+                <!-- Рекорды -->
                 <div id="records" class="profile-subtab active">
-                    <h3 style="margin:20px 0 15px; font-weight:400;">Математика</h3><div class="records-grid"><div class="record-item"><span class="record-mode">⚡ Быстрый счёт</span><span class="record-value">{{ user.records.get('math', 0) }}</span></div><div class="record-item"><span class="record-mode">🔗 Цепочки</span><span class="record-value">{{ user.records.get('math_chain', 0) }}</span></div><div class="record-item"><span class="record-mode">⚖️ Сравнение</span><span class="record-value">{{ user.records.get('math_compare', 0) }}</span></div></div>
-                    <h3 style="margin:20px 0 15px; font-weight:400;">Память</h3><div class="records-grid"><div class="record-item"><span class="record-mode">🔢 Цифры</span><span class="record-value">{{ user.records.get('memory_digits', 0) }}</span></div><div class="record-item"><span class="record-mode">📝 Слова</span><span class="record-value">{{ user.records.get('memory_words', 0) }}</span></div><div class="record-item"><span class="record-mode">🗺️ Позиции</span><span class="record-value">{{ user.records.get('memory_positions', 0) }}</span></div></div>
-                    <h3 style="margin:20px 0 15px; font-weight:400;">Логика</h3><div class="records-grid"><div class="record-item"><span class="record-mode">📊 Последовательности</span><span class="record-value">{{ user.records.get('logic_sequences', 0) }}</span></div><div class="record-item"><span class="record-mode">🔄 Аналогии</span><span class="record-value">{{ user.records.get('logic_analogies', 0) }}</span></div><div class="record-item"><span class="record-mode">🎯 Множества</span><span class="record-value">{{ user.records.get('logic_sets', 0) }}</span></div></div>
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Математика</h3>
+                    <div class="records-grid">
+                        <div class="record-item"><span class="record-mode">⚡ Быстрый счёт</span><span class="record-value">{{ records.get('math', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">🔗 Цепочки</span><span class="record-value">{{ records.get('math_chain', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">⚖️ Сравнение</span><span class="record-value">{{ records.get('math_compare', 0) if records else 0 }}</span></div>
+                    </div>
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Память</h3>
+                    <div class="records-grid">
+                        <div class="record-item"><span class="record-mode">🔢 Цифры</span><span class="record-value">{{ records.get('memory_digits', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">📝 Слова</span><span class="record-value">{{ records.get('memory_words', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">🗺️ Позиции</span><span class="record-value">{{ records.get('memory_positions', 0) if records else 0 }}</span></div>
+                    </div>
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Логика</h3>
+                    <div class="records-grid">
+                        <div class="record-item"><span class="record-mode">📊 Последовательности</span><span class="record-value">{{ records.get('logic_sequences', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">🔄 Аналогии</span><span class="record-value">{{ records.get('logic_analogies', 0) if records else 0 }}</span></div>
+                        <div class="record-item"><span class="record-mode">🎯 Множества</span><span class="record-value">{{ records.get('logic_sets', 0) if records else 0 }}</span></div>
+                    </div>
                 </div>
+
+                <!-- История -->
                 <div id="history" class="profile-subtab" style="display:none;">
-                    <div class="history-list">{% for score in user.history[-10:]|reverse %}<div class="history-item"><span>#{{ user.history|length - loop.index + 1 }}</span><span class="history-score">{{ score }}</span><span style="color:#888; margin-left:auto;">очки</span></div>{% else %}<p style="color:#888; text-align:center; padding:40px;">Нет игр</p>{% endfor %}</div>
+                    <div class="history-list">
+                        {% if history %}
+                            {% for game in history %}
+                                <div class="history-item">
+                                    <span>#{{ loop.index }}</span>
+                                    <span class="history-score">{{ game.score }}</span>
+                                    <span style="color:#888; margin-left:auto;">{{ game.game_mode }}</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p style="color:#888; text-align:center; padding:40px;">Нет игр</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
 
+            <!-- Друзья -->
+            <div id="friends" class="tab-content">
+                <div class="friends-container">
+                    <div class="friends-header">
+                        <h1><i class="fas fa-users"></i> Друзья</h1>
+                        <button class="btn-primary" onclick="openAddFriendModal()">
+                            <i class="fas fa-user-plus"></i> Добавить друга
+                        </button>
+                    </div>
+                    <div id="incomingRequests" class="requests-section"></div>
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="friendSearch" placeholder="Поиск пользователей..." oninput="searchUsers(this.value)">
+                        </div>
+                        <div id="searchResults" class="search-results"></div>
+                    </div>
+                    <div class="friends-list">
+                        <h3>Мои друзья <span id="onlineCount"></span></h3>
+                        <div id="friendsListContainer"><div class="loading">Загрузка...</div></div>
+                    </div>
+                    <div id="outgoingRequests" class="requests-section">
+                        <h4>Исходящие заявки</h4>
+                        <div id="outgoingList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рейтинг -->
             <div id="leaderboard" class="tab-content">
                 <div class="leaderboard-header"><i class="fas fa-trophy"></i><h1>Рейтинг</h1><p style="color:#888;">Топ-10 игроков</p></div>
                 <div id="leaderboard-list" style="max-width:600px; margin:0 auto;"><div style="text-align:center; padding:40px; color:#888;"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div></div>
@@ -154,6 +272,33 @@
         </div>
     </div>
 
+    <!-- Модальные окна -->
+    <div id="friendProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFriendProfile()">&times;</span>
+            <div id="friendProfileContent"></div>
+        </div>
+    </div>
+    <div id="duelInviteModal" class="modal">
+        <div class="modal-content modal-small">
+            <span class="close" onclick="closeDuelInviteModal()">&times;</span>
+            <h2>Вызов на дуэль</h2>
+            <p id="duelInviteFriendName"></p>
+            <div class="mode-selector">
+                <label>Выберите режим:</label>
+                <select id="duelModeSelect">
+                    <option value="math">⚡ Быстрый счёт</option>
+                    <option value="math_chain">🔗 Цепочки</option>
+                    <option value="math_compare">⚖️ Сравнение</option>
+                    <option value="memory_digits">🔢 Цифры</option>
+                    <option value="logic_sequences">📊 Последовательности</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="sendDuelInvite()">Отправить вызов</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
         const sidebar = document.getElementById('sidebar');
         document.getElementById('menuToggle').onclick = (e) => { e.stopPropagation(); sidebar.classList.toggle('expanded'); localStorage.setItem('sidebarExpanded', sidebar.classList.contains('expanded')); };
@@ -165,6 +310,7 @@
             document.getElementById(tab).classList.add('active');
             event.target.closest('.nav-item').classList.add('active');
             if (tab === 'leaderboard') loadLeaderboard();
+            if (tab === 'friends') loadFriends();
         }
 
         function showProfileSubtab(tab) {
@@ -180,12 +326,167 @@
                 let html = '';
                 data.forEach((p, i) => {
                     const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`;
-                    const isCurrent = p.name === '{{ name }}';
-                    html += `<div class="leaderboard-item" style="${isCurrent ? 'border:1px solid #38bdf8;' : ''}"><div class="rank">${medal}</div><div class="player"><div class="player-name">${p.name} ${isCurrent ? '<span class="you-badge">Вы</span>' : ''}</div><div style="color:#888; font-size:13px;">Уровень ${p.level}</div></div><div class="xp-value">${p.xp} XP</div></div>`;
+                    const isCurrent = p.username === '{{ name }}';
+                    html += `<div class="leaderboard-item" style="${isCurrent ? 'border:1px solid #38bdf8;' : ''}"><div class="rank">${medal}</div><div class="player"><div class="player-name">${p.username} ${isCurrent ? '<span class="you-badge">Вы</span>' : ''}</div><div style="color:#888; font-size:13px;">Уровень ${p.level}</div></div><div class="xp-value">${p.xp} XP</div></div>`;
                 });
                 document.getElementById('leaderboard-list').innerHTML = html || '<p style="color:#888; text-align:center;">Нет игроков</p>';
             } catch(e) {}
         }
+
+        // Friends functionality
+        let currentFriendId = null;
+        let friendsData = {friends: [], incoming: [], outgoing: []};
+        let socket = null;
+
+        function initSocket() {
+            socket = io();
+            socket.on('connect', () => console.log('Connected'));
+            socket.on('friend_request', (data) => { loadFriends(); showNotification(`Новая заявка от ${data.from_username}`); });
+            socket.on('duel_invite', (data) => { if (confirm(`${data.from_username} вызывает на дуэль! Принять?`)) { fetch(`/api/duel/invite/${data.invite_id}/accept`, {method: 'POST'}).then(r => r.json()).then(d => { if (d.success) window.location.href = `/duel/${d.duel_id}`; }); } else { fetch(`/api/duel/invite/${data.invite_id}/reject`, {method: 'POST'}); } });
+            socket.on('duel_start', (data) => { window.location.href = `/duel/${data.duel_id}`; });
+        }
+
+        function showNotification(msg) {
+            const n = document.createElement('div');
+            n.style.cssText = 'position:fixed;top:20px;right:20px;background:linear-gradient(135deg,#38bdf8,#22c55e);color:#0f172a;padding:15px 20px;border-radius:10px;font-weight:bold;z-index:9999;';
+            n.textContent = msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 3000);
+        }
+
+        async function loadFriends() {
+            try {
+                const res = await fetch('/api/friends');
+                friendsData = await res.json();
+                renderFriends();
+                renderRequests();
+            } catch (e) { console.error(e); }
+        }
+
+        function renderFriends() {
+            const container = document.getElementById('friendsListContainer');
+            const friends = friendsData.friends;
+            const onlineCount = friends.filter(f => f.is_online).length;
+            document.getElementById('onlineCount').textContent = `(${onlineCount}/${friends.length} онлайн)`;
+            if (friends.length === 0) {
+                container.innerHTML = '<p style="color:#94a3b8;text-align:center;padding:40px;">У вас пока нет друзей</p>';
+                return;
+            }
+            container.innerHTML = friends.map(f => `
+                <div class="friend-card" data-user-id="${f.id}">
+                    <div class="friend-info" onclick="showFriendProfile(${f.id})">
+                        <div class="user-avatar" style="background:${f.avatar_color};"><i class="fas ${f.avatar_icon}"></i></div>
+                        <div><div class="user-name"><span class="online-indicator ${f.is_online ? '' : 'offline-indicator'}"></span>${f.username}</div>
+                        <div class="user-level">Уровень ${f.level} • ${f.xp} XP</div>
+                        <div class="friend-stats"><span><i class="fas fa-trophy"></i> ELO: ${f.elo}</span><span><i class="fas fa-crosshairs"></i> ${f.duel_wins}/${f.duel_losses}</span></div></div>
+                    </div>
+                    <div class="friend-actions">
+                        <button class="btn-secondary" onclick="challengeFriend(${f.id}, '${f.username}')"><i class="fas fa-crosshairs"></i> Дуэль</button>
+                        <button class="btn-danger" onclick="removeFriend(${f.id})"><i class="fas fa-user-minus"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderRequests() {
+            const incomingDiv = document.getElementById('incomingRequests');
+            if (friendsData.incoming.length > 0) {
+                incomingDiv.innerHTML = `<h4>Входящие заявки (${friendsData.incoming.length})</h4>` + friendsData.incoming.map(r => `
+                    <div class="request-item">
+                        <div class="user-info"><div class="user-avatar" style="background:${r.avatar_color};"><i class="fas ${r.avatar_icon}"></i></div><div><div class="user-name">${r.username}</div><div class="user-level">Уровень ${r.level}</div></div></div>
+                        <div style="display:flex;gap:8px;"><button class="btn-primary" onclick="acceptFriend(${r.id})">Принять</button><button class="btn-secondary" onclick="rejectFriend(${r.id})">Отклонить</button></div>
+                    </div>
+                `).join('');
+            } else { incomingDiv.innerHTML = ''; }
+
+            const outgoingDiv = document.getElementById('outgoingList');
+            if (friendsData.outgoing.length > 0) {
+                outgoingDiv.innerHTML = friendsData.outgoing.map(r => `
+                    <div class="request-item"><div class="user-info"><div class="user-avatar" style="background:${r.avatar_color};"><i class="fas ${r.avatar_icon}"></i></div><div><div class="user-name">${r.username}</div><div class="user-level">Ожидает ответа...</div></div></div></div>
+                `).join('');
+            } else { outgoingDiv.innerHTML = '<p style="color:#94a3b8;">Нет исходящих заявок</p>'; }
+        }
+
+        async function searchUsers(query) {
+            if (query.length < 2) { document.getElementById('searchResults').innerHTML = ''; return; }
+            try {
+                const res = await fetch(`/api/friends/search?q=${encodeURIComponent(query)}`);
+                const users = await res.json();
+                const resultsDiv = document.getElementById('searchResults');
+                if (users.length === 0) { resultsDiv.innerHTML = '<p style="padding:20px;text-align:center;color:#94a3b8;">Пользователи не найдены</p>'; return; }
+                const friendIds = friendsData.friends.map(f => f.id);
+                const outgoingIds = friendsData.outgoing.map(o => o.user_id);
+                resultsDiv.innerHTML = users.map(u => {
+                    if (friendIds.includes(u.id)) return `<div class="search-result-item"><div class="user-info"><div class="user-avatar" style="background:${u.avatar_color};"><i class="fas ${u.avatar_icon}"></i></div><div><div class="user-name">${u.username}</div><div class="user-level">Уже в друзьях</div></div></div></div>`;
+                    if (outgoingIds.includes(u.id)) return `<div class="search-result-item"><div class="user-info"><div class="user-avatar" style="background:${u.avatar_color};"><i class="fas ${u.avatar_icon}"></i></div><div><div class="user-name">${u.username}</div><div class="user-level">Заявка отправлена</div></div></div></div>`;
+                    return `<div class="search-result-item"><div class="user-info"><div class="user-avatar" style="background:${u.avatar_color};"><i class="fas ${u.avatar_icon}"></i></div><div><div class="user-name"><span class="online-indicator ${u.is_online ? '' : 'offline-indicator'}"></span>${u.username}</div><div class="user-level">Уровень ${u.level}</div></div></div><button class="btn-primary" onclick="addFriend(${u.id})"><i class="fas fa-user-plus"></i> Добавить</button></div>`;
+                }).join('');
+            } catch (e) {}
+        }
+
+        async function addFriend(friendId) {
+            try {
+                const res = await fetch('/api/friends/add', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({friend_id: friendId}) });
+                const data = await res.json();
+                if (data.success) { showNotification('Заявка отправлена!'); loadFriends(); document.getElementById('friendSearch').value = ''; document.getElementById('searchResults').innerHTML = ''; }
+                else alert(data.error);
+            } catch (e) {}
+        }
+
+        async function acceptFriend(requestId) {
+            await fetch('/api/friends/accept', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({request_id: requestId}) });
+            showNotification('Друг добавлен!'); loadFriends();
+        }
+
+        async function rejectFriend(requestId) {
+            await fetch('/api/friends/reject', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({request_id: requestId}) });
+            loadFriends();
+        }
+
+        async function removeFriend(friendId) {
+            if (!confirm('Удалить друга?')) return;
+            await fetch('/api/friends/remove', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({friend_id: friendId}) });
+            loadFriends();
+        }
+
+        async function showFriendProfile(userId) {
+            try {
+                const res = await fetch(`/api/user/${userId}`);
+                const data = await res.json();
+                const modal = document.getElementById('friendProfileModal');
+                const content = document.getElementById('friendProfileContent');
+                const u = data.user;
+                content.innerHTML = `<div style="text-align:center;margin-bottom:20px;"><div class="user-avatar" style="width:80px;height:80px;margin:0 auto;background:${u.avatar_color};font-size:36px;"><i class="fas ${u.avatar_icon}"></i></div><h2 style="margin-top:15px;">${u.username}</h2><span style="display:inline-block;padding:5px 15px;background:#38bdf8;border-radius:20px;color:#0f172a;font-weight:bold;">Уровень ${u.level}</span></div>
+                <div class="profile-stats-grid"><div class="stat-item"><div class="label">Опыт</div><div class="value">${u.xp} XP</div></div><div class="stat-item"><div class="label">ELO</div><div class="value">${u.elo}</div></div><div class="stat-item"><div class="label">Дуэли</div><div class="value">${u.duel_wins}/${u.duel_losses}</div></div><div class="stat-item"><div class="label">Макс. комбо</div><div class="value">x${u.max_combo}</div></div></div>
+                <h4>Рекорды</h4><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:15px 0;">${Object.entries(data.records).slice(0,6).map(([m,s]) => `<div style="display:flex;justify-content:space-between;padding:8px 12px;background:#0f172a;border-radius:8px;"><span style="color:#94a3b8;font-size:13px;">${getModeName(m)}</span><span style="color:#22c55e;font-weight:bold;">${s}</span></div>`).join('')}</div>
+                ${data.achievements.length ? `<h4>Достижения</h4><div class="achievements-list">${data.achievements.map(a => `<div class="achievement-badge"><i class="fas ${a.icon}"></i> ${a.name}</div>`).join('')}</div>` : ''}
+                <div style="display:flex;gap:10px;margin-top:20px;">${data.friendship_status === 'accepted' ? `<button class="btn-primary" style="flex:1;" onclick="challengeFriend(${u.id},'${u.username}');closeFriendProfile();"><i class="fas fa-crosshairs"></i> Вызвать на дуэль</button>` : (data.friendship_status === 'pending' ? '<p style="color:#94a3b8;">Заявка отправлена</p>' : `<button class="btn-primary" style="flex:1;" onclick="addFriend(${u.id});closeFriendProfile();"><i class="fas fa-user-plus"></i> Добавить в друзья</button>`)}</div>`;
+                modal.style.display = 'flex';
+            } catch (e) {}
+        }
+
+        function getModeName(m) { const names={'math':'⚡ Счёт','math_chain':'🔗 Цепочки','math_compare':'⚖️ Сравнение','memory_digits':'🔢 Цифры','memory_words':'📝 Слова','memory_positions':'🗺️ Позиции','logic_sequences':'📊 Логика','logic_analogies':'🔄 Аналогии','logic_sets':'🎯 Множества'}; return names[m]||m; }
+        function closeFriendProfile() { document.getElementById('friendProfileModal').style.display = 'none'; }
+        function challengeFriend(friendId, friendName) { currentFriendId = friendId; document.getElementById('duelInviteFriendName').textContent = `Вызвать ${friendName} на дуэль`; document.getElementById('duelInviteModal').style.display = 'flex'; }
+        function closeDuelInviteModal() { document.getElementById('duelInviteModal').style.display = 'none'; currentFriendId = null; }
+        async function sendDuelInvite() {
+            if (!currentFriendId) return;
+            const mode = document.getElementById('duelModeSelect').value;
+            try {
+                const res = await fetch('/api/duel/invite', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({friend_id: currentFriendId, mode}) });
+                const data = await res.json();
+                if (data.success) { showNotification('Вызов отправлен!'); closeDuelInviteModal(); }
+                else alert(data.error);
+            } catch (e) {}
+        }
+        function openAddFriendModal() { document.getElementById('friendSearch').focus(); }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('friendProfileModal')) closeFriendProfile();
+            if (event.target === document.getElementById('duelInviteModal')) closeDuelInviteModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { initSocket(); });
     </script>
 </body>
 </html>

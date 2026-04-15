@@ -1,2 +1,8 @@
-flask
+# requirements.txt
+Flask
+Flask-SocketIO
+python-socketio
+eventlet
+Pillow
+bcrypt
 gunicorn

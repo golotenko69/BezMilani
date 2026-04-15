@@ -631,13 +631,42 @@
       "is_bot": false,
       "current_task": null,
       "winner": "opponent"
+    },
+    "duel_1776232781_БоссНикитос_xfhgf": {
+      "id": "duel_1776232781_БоссНикитос_xfhgf",
+      "player": "БоссНикитос",
+      "player_elo": 1200,
+      "player_skin": "#f97316",
+      "player_score": 20,
+      "opponent": "xfhgf",
+      "opponent_elo": 1178,
+      "opponent_skin": "#fbbf24",
+      "opponent_score": 20,
+      "round": 2,
+      "max_rounds": 5,
+      "status": "active",
+      "is_bot": false,
+      "current_task": {
+        "task": {
+          "type": "logic",
+          "seq": [
+            10,
+            20,
+            30,
+            40
+          ],
+          "a": 50
+        },
+        "player_answered": false,
+        "opponent_answered": false
+      }
     }
   },
   "queue": [
     {
-      "username": "xfhgf",
-      "elo": 1178,
-      "joined_at": 1776228234.400114
+      "username": "БоссНикитос",
+      "elo": 1200,
+      "joined_at": 1776232860.9465737
     }
   ]
 }
