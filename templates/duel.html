@@ -187,211 +187,242 @@
         <div id="resultScreen" class="result-screen hidden"></div>
     </div>
 
-    <script>
-        let duelId = null;
-        let currentTask = null;
-        let playerName = '{{ name }}';
-        let maxRounds = 5;
-        let playerData = null;
-        let opponentData = null;
-        let countdown = 3;
-        let countdownInterval = null;
-        let queueCheckInterval = null;
-        let waitingForOpponent = true;
+ <script>
+    let duelId = null;
+    let currentTask = null;
+    let playerName = '{{ name|default("Вы") }}';
+    let maxRounds = 5;
+    let playerData = null;
+    let opponentData = null;
+    let countdown = 3;
+    let countdownInterval = null;
+    let queueCheckInterval = null;
+    let waitingForOpponent = true;
+    let queueAttempts = 0;
+    const MAX_ATTEMPTS = 10;
 
-        function updateProgressDots(current) {
-            const dots = document.getElementById('progressDots');
-            dots.innerHTML = '';
-            for (let i = 0; i < maxRounds; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'dot';
-                if (i < current) dot.classList.add('completed');
-                if (i === current) dot.classList.add('current');
-                dots.appendChild(dot);
-            }
+    function updateProgressDots(current) {
+        const dots = document.getElementById('progressDots');
+        dots.innerHTML = '';
+        for (let i = 0; i < maxRounds; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i < current) dot.classList.add('completed');
+            if (i === current) dot.classList.add('current');
+            dots.appendChild(dot);
         }
-        updateProgressDots(0);
+    }
+    updateProgressDots(0);
 
-        async function startQueue() {
-            try {
-                const res = await fetch('/api/duel/queue', { method: 'POST' });
-                const data = await res.json();
+    async function startQueue() {
+        try {
+            queueAttempts++;
 
-                if (data.status === 'matched') {
-                    // Нашли соперника
+            // Получаем режим из скрытого поля или data-атрибута
+            const mode = document.body.getAttribute('data-mode') || '{{ mode|default("math") }}';
+
+            const res = await fetch('/api/duel/queue', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mode: mode })
+            });
+            const data = await res.json();
+
+            console.log('Queue response:', data);
+
+            if (data.status === 'matched') {
+                clearInterval(queueCheckInterval);
+                waitingForOpponent = false;
+                duelId = data.duel_id;
+                playerData = data.player;
+                opponentData = data.opponent;
+                showIntro();
+            } else if (data.status === 'waiting') {
+                document.getElementById('loadingText').textContent = `Поиск соперника... (попытка ${queueAttempts})`;
+
+                // Если слишком долго ждём - показываем сообщение
+                if (queueAttempts >= MAX_ATTEMPTS) {
                     clearInterval(queueCheckInterval);
-                    duelId = data.duel_id;
-                    playerData = data.player;
-                    opponentData = data.opponent;
-                    showIntro();
-                } else if (data.status === 'waiting') {
-                    document.getElementById('loadingText').textContent = `Поиск соперника... (в очереди: ${data.queue_length})`;
+                    document.getElementById('loadingText').innerHTML = `
+                        Не удалось найти соперника.<br>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; background:#38bdf8; border:none; border-radius:8px; color:#000; font-weight:bold; cursor:pointer;">
+                            Попробовать снова
+                        </button>
+                    `;
                 }
-            } catch (e) {
-                console.error('Queue error:', e);
             }
+        } catch (e) {
+            console.error('Queue error:', e);
+            document.getElementById('loadingText').textContent = 'Ошибка подключения. Перезагрузите страницу.';
         }
+    }
 
-        function showIntro() {
-            document.getElementById('loadingScreen').classList.add('hidden');
+    function showIntro() {
+        document.getElementById('loadingScreen').classList.add('hidden');
 
-            // Заполняем интро
-            document.getElementById('introPlayerName').textContent = playerData.name;
-            document.getElementById('introPlayerElo').textContent = playerData.elo;
-            document.getElementById('introPlayerChar').style.color = playerData.skin;
+        // Заполняем интро
+        document.getElementById('introPlayerName').textContent = playerData.name;
+        document.getElementById('introPlayerElo').textContent = playerData.elo;
+        document.getElementById('introPlayerChar').style.color = playerData.skin || '#ef4444';
 
-            document.getElementById('introOpponentName').textContent = opponentData.name;
-            document.getElementById('introOpponentElo').textContent = opponentData.elo;
-            document.getElementById('introOpponentChar').style.color = opponentData.skin;
+        document.getElementById('introOpponentName').textContent = opponentData.name;
+        document.getElementById('introOpponentElo').textContent = opponentData.elo;
+        document.getElementById('introOpponentChar').style.color = opponentData.skin || '#3b82f6';
 
-            // Заполняем игру
-            document.getElementById('playerName').textContent = playerData.name;
-            document.getElementById('playerElo').textContent = playerData.elo;
-            document.getElementById('playerChar').style.color = playerData.skin;
+        // Заполняем игру
+        document.getElementById('playerName').textContent = playerData.name;
+        document.getElementById('playerElo').textContent = playerData.elo;
+        document.getElementById('playerChar').style.color = playerData.skin || '#ef4444';
 
-            document.getElementById('opponentName').textContent = opponentData.name;
-            document.getElementById('opponentElo').textContent = opponentData.elo;
-            document.getElementById('opponentChar').style.color = opponentData.skin;
+        document.getElementById('opponentName').textContent = opponentData.name;
+        document.getElementById('opponentElo').textContent = opponentData.elo;
+        document.getElementById('opponentChar').style.color = opponentData.skin || '#3b82f6';
 
-            document.getElementById('vsIntroScreen').classList.remove('hidden');
-            startCountdown();
-        }
+        document.getElementById('vsIntroScreen').classList.remove('hidden');
+        startCountdown();
+    }
 
-        function startCountdown() {
-            countdown = 3;
-            const timerEl = document.getElementById('countdownTimer');
+    function startCountdown() {
+        countdown = 3;
+        const timerEl = document.getElementById('countdownTimer');
+        timerEl.textContent = countdown;
+
+        countdownInterval = setInterval(() => {
+            countdown--;
             timerEl.textContent = countdown;
 
-            countdownInterval = setInterval(() => {
-                countdown--;
-                timerEl.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('vsIntroScreen').classList.add('hidden');
+                document.getElementById('gameScreen').classList.remove('hidden');
+                loadTask();
+            }
+        }, 1000);
+    }
 
-                if (countdown <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('vsIntroScreen').classList.add('hidden');
-                    document.getElementById('gameScreen').classList.remove('hidden');
+    async function loadTask() {
+        try {
+            const res = await fetch(`/api/duel/${duelId}/task`);
+            const data = await res.json();
+
+            if (data.waiting) {
+                setTimeout(loadTask, 500);
+                return;
+            }
+
+            currentTask = data.task;
+            const taskEl = document.getElementById('task');
+            taskEl.className = '';
+            document.getElementById('answer').className = '';
+
+            if (currentTask.type === 'math' || currentTask.type === 'math_chain') {
+                taskEl.textContent = currentTask.q + ' = ?';
+            } else if (currentTask.type === 'compare') {
+                taskEl.textContent = currentTask.q + ' (>, <, =)';
+            } else if (currentTask.type === 'logic') {
+                taskEl.textContent = (currentTask.seq || []).join(', ') + ', ?';
+            } else if (currentTask.q) {
+                taskEl.textContent = currentTask.q;
+            }
+
+            document.getElementById('answer').value = '';
+            document.getElementById('answer').focus();
+        } catch (e) {
+            console.error('Load task error:', e);
+            setTimeout(loadTask, 1000);
+        }
+    }
+
+    async function submitAnswer() {
+        const answerInput = document.getElementById('answer');
+        const answer = answerInput.value.trim();
+        if (!answer) return;
+
+        const btn = document.querySelector('button');
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(`/api/duel/${duelId}/answer`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answer })
+            });
+            const data = await res.json();
+
+            const taskEl = document.getElementById('task');
+            const body = document.body;
+
+            // Подсветка
+            if (data.correct) {
+                taskEl.classList.add('correct');
+                answerInput.classList.add('correct-input');
+                body.classList.add('correct-flash');
+                setTimeout(() => body.classList.remove('correct-flash'), 400);
+            } else {
+                taskEl.classList.add('wrong');
+                answerInput.classList.add('wrong-input');
+                body.classList.add('wrong-flash');
+                setTimeout(() => body.classList.remove('wrong-flash'), 400);
+            }
+
+            document.getElementById('playerScore').textContent = data.player1_score || data.player_score || 0;
+            document.getElementById('opponentScore').textContent = data.player2_score || data.opponent_score || 0;
+            document.getElementById('currentRound').textContent = data.round;
+            updateProgressDots(data.round);
+
+            if (data.finished) {
+                showResult(data);
+            } else {
+                setTimeout(() => {
+                    taskEl.classList.remove('correct', 'wrong');
+                    answerInput.classList.remove('correct-input', 'wrong-input');
                     loadTask();
-                }
-            }, 1000);
-        }
-
-        async function loadTask() {
-            try {
-                const res = await fetch(`/api/duel/${duelId}/task`);
-                const data = await res.json();
-
-                if (data.waiting) {
-                    setTimeout(loadTask, 500);
-                    return;
-                }
-
-                currentTask = data.task;
-                const taskEl = document.getElementById('task');
-                taskEl.className = '';
-                document.getElementById('answer').className = '';
-
-                if (currentTask.type === 'math' || currentTask.type === 'math_chain') {
-                    taskEl.textContent = currentTask.q + ' = ?';
-                } else if (currentTask.type === 'compare') {
-                    taskEl.textContent = currentTask.q + ' (>, <, =)';
-                } else if (currentTask.type === 'logic') {
-                    taskEl.textContent = currentTask.seq.join(', ') + ', ?';
-                }
-
-                document.getElementById('answer').value = '';
-                document.getElementById('answer').focus();
-            } catch (e) {
-                console.error('Load task error:', e);
-                setTimeout(loadTask, 1000);
+                }, 800);
             }
+        } catch (e) {
+            console.error('Submit error:', e);
+            alert('Ошибка отправки ответа');
+        } finally {
+            btn.disabled = false;
         }
+    }
 
-        async function submitAnswer() {
-            const answerInput = document.getElementById('answer');
-            const answer = answerInput.value.trim();
-            if (!answer) return;
+    function showResult(data) {
+        document.getElementById('gameScreen').classList.add('hidden');
+        const resultScreen = document.getElementById('resultScreen');
+        resultScreen.classList.remove('hidden');
 
-            const btn = document.querySelector('button');
-            btn.disabled = true;
+        const playerScore = data.player1_score || data.player_score || 0;
+        const opponentScore = data.player2_score || data.opponent_score || 0;
+        const isWinner = data.winner === 'player' || playerScore > opponentScore;
 
-            try {
-                const res = await fetch(`/api/duel/${duelId}/answer`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ answer })
-                });
-                const data = await res.json();
+        resultScreen.innerHTML = `
+            <div style="font-size: 80px; margin-bottom: 20px;">
+                <i class="fas fa-${isWinner ? 'crown' : 'hand-peace'}" style="color: ${isWinner ? '#fbbf24' : '#94a3b8'};"></i>
+            </div>
+            <h2 style="font-size: 36px; margin-bottom: 20px; font-weight: 600;">${isWinner ? 'ПОБЕДА!' : 'ПОРАЖЕНИЕ'}</h2>
+            <div style="font-size: 56px; font-weight: bold; margin: 20px 0;">${playerScore} - ${opponentScore}</div>
+            <p style="color: #94a3b8; margin-bottom: 40px;">
+                ${isWinner ? 'Отличная игра! Твой ELO повышен.' : 'Попробуй ещё раз!'}
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="/duel" style="padding: 15px 35px; background: #38bdf8; color: #000; border-radius: 10px; text-decoration: none; font-weight: bold;">Играть снова</a>
+                <a href="/menu" style="padding: 15px 35px; background: #1e293b; color: #fff; border-radius: 10px; text-decoration: none;">В меню</a>
+            </div>
+        `;
+    }
 
-                const taskEl = document.getElementById('task');
-                const body = document.body;
+    document.getElementById('answer').addEventListener('keydown', e => {
+        if (e.key === 'Enter') submitAnswer();
+    });
 
-                // Подсветка
-                if (data.correct) {
-                    taskEl.classList.add('correct');
-                    answerInput.classList.add('correct-input');
-                    body.classList.add('correct-flash');
-                    setTimeout(() => body.classList.remove('correct-flash'), 400);
-                } else {
-                    taskEl.classList.add('wrong');
-                    answerInput.classList.add('wrong-input');
-                    body.classList.add('wrong-flash');
-                    setTimeout(() => body.classList.remove('wrong-flash'), 400);
-                }
+    // Устанавливаем режим
+    const mode = '{{ mode|default("math") }}';
+    document.body.setAttribute('data-mode', mode);
 
-                document.getElementById('playerScore').textContent = data.player_score;
-                document.getElementById('opponentScore').textContent = data.opponent_score;
-                document.getElementById('currentRound').textContent = data.round;
-                updateProgressDots(data.round);
-
-                if (data.finished) {
-                    showResult(data);
-                } else {
-                    setTimeout(() => {
-                        taskEl.classList.remove('correct', 'wrong');
-                        answerInput.classList.remove('correct-input', 'wrong-input');
-                        loadTask();
-                    }, 800);
-                }
-            } catch (e) {
-                console.error('Submit error:', e);
-                alert('Ошибка отправки ответа');
-            } finally {
-                btn.disabled = false;
-            }
-        }
-
-        function showResult(data) {
-            document.getElementById('gameScreen').classList.add('hidden');
-            const resultScreen = document.getElementById('resultScreen');
-            resultScreen.classList.remove('hidden');
-
-            const isWinner = data.winner === 'player';
-            const playerScore = data.player_score;
-            const opponentScore = data.opponent_score;
-
-            resultScreen.innerHTML = `
-                <div style="font-size: 80px; margin-bottom: 20px;">
-                    <i class="fas fa-${isWinner ? 'crown' : 'hand-peace'}" style="color: ${isWinner ? '#fbbf24' : '#94a3b8'};"></i>
-                </div>
-                <h2 style="font-size: 36px; margin-bottom: 20px; font-weight: 600;">${isWinner ? 'ПОБЕДА!' : 'ПОРАЖЕНИЕ'}</h2>
-                <div style="font-size: 56px; font-weight: bold; margin: 20px 0;">${playerScore} - ${opponentScore}</div>
-                <p style="color: #94a3b8; margin-bottom: 40px;">
-                    ${isWinner ? 'Отличная игра! Твой ELO повышен.' : 'Попробуй ещё раз!'}
-                </p>
-                <div style="display: flex; gap: 15px; justify-content: center;">
-                    <a href="/duel" style="padding: 15px 35px; background: #38bdf8; color: #000; border-radius: 10px; text-decoration: none; font-weight: bold;">Играть снова</a>
-                    <a href="/menu" style="padding: 15px 35px; background: #1e293b; color: #fff; border-radius: 10px; text-decoration: none;">В меню</a>
-                </div>
-            `;
-        }
-
-        document.getElementById('answer').addEventListener('keydown', e => {
-            if (e.key === 'Enter') submitAnswer();
-        });
-
-        // Запускаем поиск
-        queueCheckInterval = setInterval(startQueue, 1000);
-        startQueue();
-    </script>
+    // Запускаем поиск
+    queueCheckInterval = setInterval(startQueue, 800);
+    startQueue();
+</script>
 </body>
 </html>

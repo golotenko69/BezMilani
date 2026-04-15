@@ -311,7 +311,13 @@ def get_bot_by_elo(target_elo):
     bots = conn.execute('SELECT * FROM bots').fetchall()
     conn.close()
     if not bots:
-        return None
+        # Если ботов нет - создаём одного
+        return {
+            'id': 1,
+            'name': 'NeuroBot',
+            'elo': 1200,
+            'skin': '#3b82f6'
+        }
     best_bot = min(bots, key=lambda b: abs(b['elo'] - target_elo))
     return dict(best_bot)
 
@@ -815,9 +821,7 @@ def duel_queue():
     conn = get_db()
     user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
 
-    # Ищем бота для дуэли (заглушка на 3 секунды поиска)
-    time.sleep(3)  # Имитация поиска
-
+    # ВСЕГДА подбираем бота (без ожидания)
     bot = get_bot_by_elo(user['elo'])
 
     if bot:
@@ -827,6 +831,7 @@ def duel_queue():
             VALUES (?, ?, ?, ?, 'active', 5)
         ''', (duel_id, user_id, bot['id'], game_mode))
         conn.commit()
+        conn.close()
 
         return jsonify({
             'status': 'matched',
@@ -835,7 +840,7 @@ def duel_queue():
                 'id': user['id'],
                 'name': user['username'],
                 'elo': user['elo'],
-                'skin': user['skin']
+                'skin': user['skin'] or user['avatar_color']
             },
             'opponent': {
                 'id': bot['id'],
@@ -848,7 +853,6 @@ def duel_queue():
 
     conn.close()
     return jsonify({'status': 'waiting'})
-
 
 @app.route('/api/duel/invite', methods=['POST'])
 @login_required
