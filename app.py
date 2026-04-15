@@ -1,4 +1,5 @@
 # app.py
+import eventlet
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import json
@@ -14,10 +15,18 @@ from functools import wraps
 from game.generator import *
 from game.scoring import calculate_score
 
+eventlet.monkey_patch()
+
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-change-in-production')
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-me')
+
+socketio = SocketIO(app,
+                   cors_allowed_origins="*",
+                   async_mode='eventlet',
+                   logger=False,
+                   engineio_logger=False)
 app.config['SESSION_TYPE'] = 'filesystem'
-socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
+
 
 DATABASE = 'brain_trainer.db'
 ROUND_TIME = 30
@@ -1106,7 +1115,10 @@ def handle_duel_answer(data):
 
 
 # ============== ЗАПУСК ==============
-# На:
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    socketio.run(app, debug=False, host='0.0.0.0', port=port)
+    port = int(os.environ.get('PORT', 10000))
+    socketio.run(app,
+                debug=False,
+                host='0.0.0.0',
+                port=port,
+                allow_unsafe_werkzeug=True)
