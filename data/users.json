@@ -1,0 +1,463 @@
+{
+  "Андрей": {
+    "records": {
+      "math": 672,
+      "memory": 525,
+      "logic": 44,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [
+      672,
+      525,
+      354,
+      44,
+      304
+    ],
+    "xp": 152,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#06b6d4",
+    "avatar": {
+      "color": "#06b6d4",
+      "icon": "fa-crown"
+    }
+  },
+  "dnc1795": {
+    "records": {
+      "math": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0,
+      "math_chain": 0
+    },
+    "history": [
+      -65,
+      0,
+      0,
+      0,
+      0
+    ],
+    "xp": 5,
+    "perfect_runs": 0,
+    "max_combo": 1,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#06b6d4",
+    "avatar": {
+      "color": "#06b6d4",
+      "icon": "fa-user-secret"
+    }
+  },
+  "уак": {
+    "records": {
+      "math": 12,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [
+      12,
+      0,
+      0
+    ],
+    "xp": 8,
+    "perfect_runs": 0,
+    "max_combo": 2,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#22c55e",
+    "avatar": {
+      "color": "#22c55e",
+      "icon": "fa-user-secret"
+    }
+  },
+  "о": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#ec4899",
+    "avatar": {
+      "color": "#ec4899",
+      "icon": "fa-music"
+    }
+  },
+  "дима": {
+    "records": {
+      "math": 36,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 201,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [
+      12,
+      36,
+      0,
+      0,
+      0,
+      201
+    ],
+    "xp": 127,
+    "perfect_runs": 1,
+    "max_combo": 6,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#ef4444",
+    "avatar": {
+      "color": "#ef4444",
+      "icon": "fa-user-ninja"
+    }
+  },
+  "ддд": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#f97316",
+    "avatar": {
+      "color": "#f97316",
+      "icon": "fa-user-pilot"
+    }
+  },
+  "даун": {
+    "records": {
+      "math": 988,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [
+      988
+    ],
+    "xp": 494,
+    "perfect_runs": 1,
+    "max_combo": 12,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#ef4444",
+    "avatar": {
+      "color": "#ef4444",
+      "icon": "fa-user-tie"
+    }
+  },
+  "s1mnadac7iy": {
+    "records": {
+      "math": 0,
+      "math_chain": 14,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [
+      0,
+      0,
+      14
+    ],
+    "xp": 9,
+    "perfect_runs": 0,
+    "max_combo": 2,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#8b5cf6",
+    "avatar": {
+      "color": "#8b5cf6",
+      "icon": "fa-crown"
+    }
+  },
+  " dnc1795": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory": 0,
+      "logic": 0,
+      "2back": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#22c55e",
+    "avatar": {
+      "color": "#22c55e",
+      "icon": "fa-user-graduate"
+    }
+  },
+  "rge": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1095,
+    "duel_wins": 1,
+    "duel_losses": 12,
+    "skin": "#3b82f6",
+    "avatar": {
+      "color": "#3b82f6",
+      "icon": "fa-user-graduate"
+    }
+  },
+  ",,": {
+    "records": {
+      "math": 572,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [
+      572
+    ],
+    "xp": 286,
+    "perfect_runs": 1,
+    "max_combo": 9,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#f97316",
+    "avatar": {
+      "color": "#f97316",
+      "icon": "fa-user-astronaut"
+    }
+  },
+  "nnn": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1101,
+    "duel_wins": 0,
+    "duel_losses": 6,
+    "skin": "#f97316",
+    "avatar": {
+      "color": "#f97316",
+      "icon": "fa-user-secret"
+    }
+  },
+  "s": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#f97316",
+    "avatar": {
+      "color": "#f97316",
+      "icon": "fa-user-pilot"
+    }
+  },
+  "f": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#06b6d4",
+    "avatar": {
+      "color": "#06b6d4",
+      "icon": "fa-user-ninja"
+    }
+  },
+  "и": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1200,
+    "duel_wins": 0,
+    "duel_losses": 0,
+    "skin": "#8b5cf6",
+    "avatar": {
+      "color": "#8b5cf6",
+      "icon": "fa-user-ninja"
+    }
+  },
+  "аа": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0,
+      "multi": 0
+    },
+    "history": [
+      0
+    ],
+    "xp": 1,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 967,
+    "duel_wins": 0,
+    "duel_losses": 18,
+    "skin": "#8b5cf6",
+    "avatar": {
+      "color": "#fbbf24",
+      "icon": "fa-user-secret"
+    }
+  },
+  "xfhgf": {
+    "records": {
+      "math": 0,
+      "math_chain": 0,
+      "math_compare": 0,
+      "memory_digits": 0,
+      "memory_words": 0,
+      "memory_positions": 0,
+      "logic_sequences": 0,
+      "logic_analogies": 0,
+      "logic_sets": 0
+    },
+    "history": [],
+    "xp": 0,
+    "perfect_runs": 0,
+    "max_combo": 0,
+    "achievements": [],
+    "elo": 1178,
+    "duel_wins": 0,
+    "duel_losses": 1,
+    "skin": "#fbbf24",
+    "avatar": {
+      "color": "#f97316",
+      "icon": "fa-user-ninja"
+    }
+  }
+}

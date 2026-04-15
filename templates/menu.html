@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Trainer - Меню</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0a0a0f; color: #fff; font-family: 'Segoe UI', sans-serif; }
+        .container { display: flex; min-height: 100vh; }
+        .sidebar { width: 80px; background: #0f0f15; padding: 20px 0; display: flex; flex-direction: column; transition: width 0.2s; overflow: hidden; }
+        .sidebar.expanded { width: 240px; }
+        .sidebar-header { display: flex; align-items: center; gap: 12px; padding: 10px 20px; cursor: pointer; color: #fff; }
+        .sidebar-header i { font-size: 24px; min-width: 24px; }
+        .sidebar-header span { opacity: 0; transition: 0.2s; font-weight: 500; white-space: nowrap; }
+        .sidebar.expanded .sidebar-header span { opacity: 1; }
+        .nav-item { display: flex; align-items: center; gap: 16px; padding: 14px 20px; color: #888; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .nav-item i { font-size: 22px; min-width: 24px; }
+        .nav-item span { opacity: 0; transition: 0.2s; }
+        .sidebar.expanded .nav-item span { opacity: 1; }
+        .nav-item:hover { background: #1a1a2e; color: #fff; }
+        .nav-item.active { background: linear-gradient(90deg, #38bdf8, #22c55e); color: #0a0a0f; }
+        .sidebar-footer { margin-top: auto; padding: 20px; border-top: 1px solid #1a1a2e; }
+        .sidebar-footer a { color: #888; text-decoration: none; display: flex; align-items: center; gap: 16px; }
+        .main { flex: 1; padding: 30px 40px; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        h1 { font-size: 32px; font-weight: 400; margin-bottom: 10px; }
+        .greeting { color: #888; margin-bottom: 30px; }
+        .games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .game-card { background: #1a1a2e; border-radius: 16px; padding: 24px; transition: 0.2s; border: 1px solid #2a2a3e; }
+        .game-card:hover { transform: translateY(-4px); border-color: #38bdf8; }
+        .game-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .game-header i { font-size: 28px; }
+        .game-header h3 { font-size: 20px; font-weight: 400; }
+        .game-links { display: flex; flex-direction: column; gap: 8px; }
+        .game-link { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #0f0f15; border-radius: 8px; color: #ccc; text-decoration: none; transition: 0.2s; }
+        .game-link:hover { background: #2a2a3e; color: #fff; }
+        .duel-card { grid-column: span 3; background: linear-gradient(135deg, #ff4757, #8b5cf6); border: none; }
+        .duel-card .game-link { background: rgba(255,255,255,0.1); color: #fff; }
+        .info-panel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .info-card { background: #1a1a2e; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 15px; }
+        .info-card i { font-size: 28px; color: #38bdf8; }
+        .info-label { font-size: 13px; color: #888; }
+        .info-value { font-size: 24px; font-weight: 300; }
+        .profile-header { display: flex; align-items: center; gap: 24px; margin-bottom: 30px; }
+        .profile-avatar {
+            width: 80px; height: 80px; border-radius: 20px; display: flex;
+            align-items: center; justify-content: center; font-size: 40px;
+            color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 3px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .profile-avatar i { font-size: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .profile-avatar:hover { transform: scale(1.05); border-color: rgba(255,255,255,0.4); }
+        .profile-title h1 { margin: 0 0 5px; font-size: 32px; }
+        .profile-level { padding: 5px 15px; background: #38bdf8; border-radius: 20px; font-size: 14px; color: #0a0a0f; font-weight: 500; }
+        .profile-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: #1a1a2e; border-radius: 12px; padding: 20px; }
+        .stat-card i { font-size: 24px; color: #38bdf8; margin-bottom: 10px; }
+        .stat-label { font-size: 13px; color: #888; }
+        .stat-value { font-size: 24px; font-weight: 300; margin-top: 5px; }
+        .xp-bar { height: 8px; background: #0f0f15; border-radius: 4px; overflow: hidden; margin: 15px 0; }
+        .xp-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #38bdf8); border-radius: 4px; }
+        .profile-tabs { display: flex; gap: 10px; margin: 25px 0 20px; border-bottom: 1px solid #2a2a3e; padding-bottom: 10px; }
+        .profile-tab { padding: 8px 20px; background: none; border: none; color: #888; cursor: pointer; font-size: 15px; transition: 0.2s; }
+        .profile-tab.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; margin-bottom: -11px; }
+        .records-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .record-item { background: #1a1a2e; border-radius: 10px; padding: 15px; display: flex; justify-content: space-between; }
+        .record-mode { color: #888; font-size: 14px; }
+        .record-value { font-size: 20px; color: #22c55e; }
+        .history-list { display: flex; flex-direction: column; gap: 8px; }
+        .history-item { background: #1a1a2e; border-radius: 10px; padding: 12px 20px; display: flex; align-items: center; gap: 15px; }
+        .history-score { font-size: 20px; color: #38bdf8; }
+        .leaderboard-header { text-align: center; margin-bottom: 30px; }
+        .leaderboard-header i { font-size: 48px; color: #ffd700; margin-bottom: 15px; }
+        .leaderboard-item { display: flex; align-items: center; padding: 15px 20px; background: #1a1a2e; border-radius: 10px; margin-bottom: 8px; }
+        .leaderboard-item .rank { font-size: 20px; min-width: 50px; }
+        .leaderboard-item .player { flex: 1; }
+        .leaderboard-item .player-name { font-weight: 500; }
+        .leaderboard-item .xp-value { font-size: 20px; color: #22c55e; }
+        .you-badge { background: #38bdf8; color: #0a0a0f; padding: 2px 10px; border-radius: 20px; font-size: 11px; margin-left: 10px; }
+        @media (max-width: 900px) { .games-grid { grid-template-columns: 1fr; } .duel-card { grid-column: span 1; } .profile-stats { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header" id="menuToggle">
+                <i class="fas fa-bars"></i>
+                <span>BrainTrainer</span>
+            </div>
+            <div class="nav-item active" onclick="switchTab('games')"><i class="fas fa-home"></i><span>Главная</span></div>
+            <div class="nav-item" onclick="switchTab('profile')"><i class="fas fa-user-circle"></i><span>Профиль</span></div>
+            <div class="nav-item" onclick="switchTab('leaderboard')"><i class="fas fa-trophy"></i><span>Рейтинг</span></div>
+            <div class="sidebar-footer"><a href="/"><i class="fas fa-sign-out-alt"></i><span>Выйти</span></a></div>
+        </div>
+
+        <div class="main">
+            <div id="games" class="tab-content active">
+                <h1>👋 Привет, {{ name }}!</h1>
+                <p class="greeting">Выбери игру и тренируй мозг</p>
+                <div class="games-grid">
+                    <div class="game-card"><div class="game-header"><i class="fas fa-calculator" style="color:#ff4757;"></i><h3>Математика</h3></div><div class="game-links"><a href="/game/math" class="game-link"><span>⚡ Быстрый счёт</span><i class="fas fa-arrow-right"></i></a><a href="/game/math_chain" class="game-link"><span>🔗 Цепочки</span><i class="fas fa-arrow-right"></i></a><a href="/game/math_compare" class="game-link"><span>⚖️ Сравнение</span><i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="game-card"><div class="game-header"><i class="fas fa-brain" style="color:#06b6d4;"></i><h3>Память</h3></div><div class="game-links"><a href="/game/memory_digits" class="game-link"><span>🔢 Цифры</span><i class="fas fa-arrow-right"></i></a><a href="/game/memory_words" class="game-link"><span>📝 Слова</span><i class="fas fa-arrow-right"></i></a><a href="/game/memory_positions" class="game-link"><span>🗺️ Позиции</span><i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="game-card"><div class="game-header"><i class="fas fa-puzzle-piece" style="color:#8b5cf6;"></i><h3>Логика</h3></div><div class="game-links"><a href="/game/logic_sequences" class="game-link"><span>📊 Последовательности</span><i class="fas fa-arrow-right"></i></a><a href="/game/logic_analogies" class="game-link"><span>🔄 Аналогии</span><i class="fas fa-arrow-right"></i></a><a href="/game/logic_sets" class="game-link"><span>🎯 Множества</span><i class="fas fa-arrow-right"></i></a></div></div>
+                    <div class="game-card duel-card"><div class="game-header"><i class="fas fa-crosshairs"></i><h3>Рейтинговый бой</h3></div><div class="game-links"><a href="/duel" class="game-link"><span>⚔️ Дуэль (ELO)</span><i class="fas fa-arrow-right"></i></a></div></div>
+                </div>
+                <div class="info-panel">
+                    <div class="info-card"><i class="fas fa-chart-line"></i><div><div class="info-label">Уровень</div><div class="info-value">{{ level }}</div></div></div>
+                    <div class="info-card"><i class="fas fa-star"></i><div><div class="info-label">Опыт</div><div class="info-value">{{ xp }} XP</div></div></div>
+                    <div class="info-card"><i class="fas fa-gamepad"></i><div><div class="info-label">Игр</div><div class="info-value">{{ user.history|length }}</div></div></div>
+                </div>
+            </div>
+
+            <div id="profile" class="tab-content">
+                <div class="profile-header">
+                    <div class="profile-avatar" style="background: {{ user.avatar.color if user.avatar else '#38bdf8' }};">
+                        {% if user.avatar and user.avatar.icon %}
+                            <i class="fas {{ user.avatar.icon }}"></i>
+                        {% else %}
+                            <span>{{ name[0].upper() }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="profile-title">
+                        <h1>{{ name }}</h1>
+                        <span class="profile-level">Уровень {{ level }}</span>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-card"><i class="fas fa-star"></i><div class="stat-label">Опыт</div><div class="stat-value">{{ xp }} XP</div></div>
+                    <div class="stat-card"><i class="fas fa-trophy"></i><div class="stat-label">Идеально</div><div class="stat-value">{{ user.perfect_runs }}</div></div>
+                    <div class="stat-card"><i class="fas fa-fire"></i><div class="stat-label">Макс. комбо</div><div class="stat-value">x{{ user.max_combo }}</div></div>
+                    <div class="stat-card"><i class="fas fa-chart-bar"></i><div class="stat-label">Всего игр</div><div class="stat-value">{{ user.history|length }}</div></div>
+                </div>
+                <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>Прогресс</span><span>{{ xp }} / {{ level * 100 }} XP</span></div><div class="xp-bar"><div class="xp-fill" style="width: {{ (xp % 100) / 100 * 100 }}%;"></div></div></div>
+                <div class="profile-tabs"><button class="profile-tab active" onclick="showProfileSubtab('records')">🏅 Рекорды</button><button class="profile-tab" onclick="showProfileSubtab('history')">📊 История</button></div>
+                <div id="records" class="profile-subtab active">
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Математика</h3><div class="records-grid"><div class="record-item"><span class="record-mode">⚡ Быстрый счёт</span><span class="record-value">{{ user.records.get('math', 0) }}</span></div><div class="record-item"><span class="record-mode">🔗 Цепочки</span><span class="record-value">{{ user.records.get('math_chain', 0) }}</span></div><div class="record-item"><span class="record-mode">⚖️ Сравнение</span><span class="record-value">{{ user.records.get('math_compare', 0) }}</span></div></div>
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Память</h3><div class="records-grid"><div class="record-item"><span class="record-mode">🔢 Цифры</span><span class="record-value">{{ user.records.get('memory_digits', 0) }}</span></div><div class="record-item"><span class="record-mode">📝 Слова</span><span class="record-value">{{ user.records.get('memory_words', 0) }}</span></div><div class="record-item"><span class="record-mode">🗺️ Позиции</span><span class="record-value">{{ user.records.get('memory_positions', 0) }}</span></div></div>
+                    <h3 style="margin:20px 0 15px; font-weight:400;">Логика</h3><div class="records-grid"><div class="record-item"><span class="record-mode">📊 Последовательности</span><span class="record-value">{{ user.records.get('logic_sequences', 0) }}</span></div><div class="record-item"><span class="record-mode">🔄 Аналогии</span><span class="record-value">{{ user.records.get('logic_analogies', 0) }}</span></div><div class="record-item"><span class="record-mode">🎯 Множества</span><span class="record-value">{{ user.records.get('logic_sets', 0) }}</span></div></div>
+                </div>
+                <div id="history" class="profile-subtab" style="display:none;">
+                    <div class="history-list">{% for score in user.history[-10:]|reverse %}<div class="history-item"><span>#{{ user.history|length - loop.index + 1 }}</span><span class="history-score">{{ score }}</span><span style="color:#888; margin-left:auto;">очки</span></div>{% else %}<p style="color:#888; text-align:center; padding:40px;">Нет игр</p>{% endfor %}</div>
+                </div>
+            </div>
+
+            <div id="leaderboard" class="tab-content">
+                <div class="leaderboard-header"><i class="fas fa-trophy"></i><h1>Рейтинг</h1><p style="color:#888;">Топ-10 игроков</p></div>
+                <div id="leaderboard-list" style="max-width:600px; margin:0 auto;"><div style="text-align:center; padding:40px; color:#888;"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        document.getElementById('menuToggle').onclick = (e) => { e.stopPropagation(); sidebar.classList.toggle('expanded'); localStorage.setItem('sidebarExpanded', sidebar.classList.contains('expanded')); };
+        if (localStorage.getItem('sidebarExpanded') === 'true') sidebar.classList.add('expanded');
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.closest('.nav-item').classList.add('active');
+            if (tab === 'leaderboard') loadLeaderboard();
+        }
+
+        function showProfileSubtab(tab) {
+            document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.profile-subtab').forEach(c => c.style.display = 'none');
+            event.target.classList.add('active');
+            document.getElementById(tab).style.display = 'block';
+        }
+
+        async function loadLeaderboard() {
+            try {
+                const data = await (await fetch('/leaderboard')).json();
+                let html = '';
+                data.forEach((p, i) => {
+                    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`;
+                    const isCurrent = p.name === '{{ name }}';
+                    html += `<div class="leaderboard-item" style="${isCurrent ? 'border:1px solid #38bdf8;' : ''}"><div class="rank">${medal}</div><div class="player"><div class="player-name">${p.name} ${isCurrent ? '<span class="you-badge">Вы</span>' : ''}</div><div style="color:#888; font-size:13px;">Уровень ${p.level}</div></div><div class="xp-value">${p.xp} XP</div></div>`;
+                });
+                document.getElementById('leaderboard-list').innerHTML = html || '<p style="color:#888; text-align:center;">Нет игроков</p>';
+            } catch(e) {}
+        }
+    </script>
+</body>
+</html>

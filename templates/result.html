@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты - Brain Trainer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="result-container">
+        <h1 style="text-align: center; margin-bottom: 30px;">🎯 Результаты раунда</h1>
+
+        <div class="result-card">
+            <div class="result-score">
+                <span class="label">Итоговый счёт</span>
+                <span class="value">{{ score }}</span>
+            </div>
+
+            <div class="result-stats">
+                <div class="stat-item">
+                    <span class="stat-label">✅ Правильных</span>
+                    <span class="stat-value">{{ correct }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">❌ Ошибок</span>
+                    <span class="stat-value">{{ wrong }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">📊 Точность</span>
+                    <span class="stat-value">{{ accuracy }}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">⚡ Среднее время</span>
+                    <span class="stat-value">{{ avg_time }}с</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🔥 Макс. комбо</span>
+                    <span class="stat-value">x{{ max_combo }}</span>
+                </div>
+            </div>
+
+            {% if is_record %}
+            <div class="new-record">
+                🏆 НОВЫЙ РЕКОРД! 🏆
+            </div>
+            {% endif %}
+
+            <div class="feedback">
+                {{ feedback }}
+            </div>
+
+            <div class="xp-gain">
+                +{{ xp_gain }} XP
+            </div>
+
+            <div class="result-actions">
+                <a href="/game/{{ mode }}" class="btn">
+                    <i class="fas fa-redo"></i> Играть снова
+                </a>
+                <a href="/menu" class="btn">
+                    <i class="fas fa-home"></i> В меню
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

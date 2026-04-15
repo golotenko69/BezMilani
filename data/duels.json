@@ -1,0 +1,643 @@
+{
+  "active_duels": {
+    "duel_1776184830_nnn_Vertex": {
+      "player1": "nnn",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 10,
+      "player2_score": 20,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "<",
+      "bot_correct": true,
+      "winner": "Vertex"
+    },
+    "duel_1776185133_nnn_Vertex": {
+      "player1": "nnn",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 50,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "плавать",
+      "bot_correct": true,
+      "winner": "Vertex"
+    },
+    "duel_1776185145_nnn_Vertex": {
+      "player1": "nnn",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "<",
+      "bot_correct": true,
+      "winner": "Vertex"
+    },
+    "duel_1776185432_nnn_Vertex": {
+      "player1": "nnn",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "28",
+      "bot_correct": true,
+      "winner": "Vertex"
+    },
+    "duel_1776185859_nnn_CortexPrime": {
+      "player1": "nnn",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 50,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "<",
+      "bot_correct": true,
+      "winner": "CortexPrime"
+    },
+    "duel_1776185880_nnn_CortexPrime": {
+      "player1": "nnn",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "bot_answered": true,
+      "bot_answer": "11",
+      "bot_correct": true,
+      "winner": "CortexPrime"
+    },
+    "duel_1776187535_nnn_s": {
+      "player1": "nnn",
+      "player2": "s",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "tasks": [],
+      "current_task": {
+        "type": "logic",
+        "seq": [
+          11,
+          15,
+          19,
+          23
+        ],
+        "a": 27
+      },
+      "bot_answered": false
+    },
+    "duel_1776188189_nnn_и": {
+      "player1": "nnn",
+      "player2": "и",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting",
+      "current_task": {
+        "type": "logic",
+        "seq": [
+          6,
+          12,
+          18,
+          24
+        ],
+        "a": 30
+      },
+      "bot_answered": false
+    },
+    "duel_1776188561_nnn_и": {
+      "player1": "nnn",
+      "player2": "и",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting",
+      "current_task": {
+        "type": "logic",
+        "seq": [
+          3,
+          6,
+          12,
+          24
+        ],
+        "a": 48
+      },
+      "bot_answered": false
+    },
+    "duel_1776189302_nnn_и": {
+      "player1": "nnn",
+      "player2": "и",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776189344_nnn_аа": {
+      "player1": "nnn",
+      "player2": "аа",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting",
+      "current_task": {
+        "type": "logic",
+        "seq": [
+          2,
+          6,
+          12,
+          14
+        ],
+        "a": 28
+      },
+      "bot_answered": false
+    },
+    "duel_1776189952_аа_Vertex": {
+      "player1": "аа",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 10,
+      "current_round": 2,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776189953_аа_Vertex": {
+      "player1": "аа",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776189960_аа_Vertex": {
+      "player1": "аа",
+      "player2": "Vertex",
+      "bot_name": "Vertex",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "Vertex"
+    },
+    "duel_1776190284_аа_CortexPrime": {
+      "player1": "аа",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776190285_аа_CortexPrime": {
+      "player1": "аа",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776190287_аа_CortexPrime": {
+      "player1": "аа",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776190288_аа_CortexPrime": {
+      "player1": "аа",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "CortexPrime"
+    },
+    "duel_1776190289_аа_CortexPrime": {
+      "player1": "аа",
+      "player2": "CortexPrime",
+      "bot_name": "CortexPrime",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 0,
+      "max_rounds": 5,
+      "status": "starting"
+    },
+    "duel_1776190543_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190544_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190550_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190551_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 50,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190552_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190553_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 50,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190554_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190555_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190556_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190557_аа_PrimeIntellect": {
+      "player1": "аа",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 20,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190558_аа_AlphaNode": {
+      "player1": "аа",
+      "player2": "AlphaNode",
+      "bot_name": "AlphaNode",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 4,
+      "max_rounds": 5,
+      "status": "active"
+    },
+    "duel_1776190559_аа_AlphaNode": {
+      "player1": "аа",
+      "player2": "AlphaNode",
+      "bot_name": "AlphaNode",
+      "player1_score": 0,
+      "player2_score": 10,
+      "current_round": 4,
+      "max_rounds": 5,
+      "status": "active"
+    },
+    "duel_1776190640_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190641_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190642_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 10,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190643_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 20,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190644_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190645_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 40,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190646_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 0,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190647_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 30,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190648_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 50,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190649_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 20,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "duel_1776190650_rge_PrimeIntellect": {
+      "player1": "rge",
+      "player2": "PrimeIntellect",
+      "bot_name": "PrimeIntellect",
+      "player1_score": 0,
+      "player2_score": 20,
+      "current_round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "winner": "PrimeIntellect"
+    },
+    "8ec319e7": {
+      "id": "8ec319e7",
+      "player": "rge",
+      "player_elo": 1077,
+      "player_skin": "#3b82f6",
+      "player_score": 0,
+      "bot": "QuantumMind",
+      "bot_elo": 1407,
+      "bot_skin": "#ef4444",
+      "bot_score": 0,
+      "round": 0,
+      "max_rounds": 5,
+      "status": "active",
+      "current_task": {
+        "question": {
+          "type": "math",
+          "q": "15 + 10 * 5",
+          "a": 65
+        },
+        "player_answered": false,
+        "bot_answered": false
+      },
+      "created_at": 1776191038.0471964
+    },
+    "8bd28358": {
+      "id": "8bd28358",
+      "player": "rge",
+      "player_elo": 1077,
+      "player_skin": "#3b82f6",
+      "player_score": 0,
+      "bot": "Zenith",
+      "bot_elo": 871,
+      "bot_skin": "#ec4899",
+      "bot_score": 0,
+      "round": 0,
+      "max_rounds": 5,
+      "status": "active",
+      "current_task": {
+        "question": {
+          "type": "math",
+          "q": "8 + 5 * 3",
+          "a": 23
+        },
+        "player_answered": false,
+        "bot_answered": false
+      },
+      "created_at": 1776191042.2862937
+    },
+    "a8441edf": {
+      "id": "a8441edf",
+      "player": "rge",
+      "player_elo": 1077,
+      "player_skin": "#3b82f6",
+      "player_score": 0,
+      "bot": "SynapseX",
+      "bot_elo": 1739,
+      "bot_skin": "#06b6d4",
+      "bot_score": 20,
+      "round": 2,
+      "max_rounds": 5,
+      "status": "active",
+      "current_task": {
+        "question": {
+          "type": "logic",
+          "seq": [
+            9,
+            18,
+            27,
+            36
+          ],
+          "a": 45
+        },
+        "player_answered": false,
+        "bot_answered": false
+      },
+      "created_at": 1776191167.5075371
+    },
+    "908462bd": {
+      "id": "908462bd",
+      "player": "rge",
+      "player_elo": 1077,
+      "player_skin": "#3b82f6",
+      "player_score": 0,
+      "bot": "QuantumMind",
+      "bot_elo": 1407,
+      "bot_skin": "#ef4444",
+      "bot_score": 50,
+      "round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "current_task": {
+        "question": {
+          "type": "compare",
+          "q": "10×9 ? 7×5",
+          "a": ">"
+        },
+        "player_answered": false,
+        "bot_answered": false
+      },
+      "created_at": 1776191200.4001617,
+      "winner": "bot"
+    },
+    "duel_1776228129_xfhgf_rge": {
+      "id": "duel_1776228129_xfhgf_rge",
+      "player": "xfhgf",
+      "player_elo": 1200,
+      "player_skin": "#fbbf24",
+      "player_score": 40,
+      "opponent": "rge",
+      "opponent_elo": 1073,
+      "opponent_skin": "#3b82f6",
+      "opponent_score": 40,
+      "round": 5,
+      "max_rounds": 5,
+      "status": "finished",
+      "is_bot": false,
+      "current_task": null,
+      "winner": "opponent"
+    }
+  },
+  "queue": [
+    {
+      "username": "xfhgf",
+      "elo": 1178,
+      "joined_at": 1776228234.400114
+    }
+  ]
+}

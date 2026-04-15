@@ -1,0 +1,202 @@
+{
+  "NeuroBot": {
+    "name": "NeuroBot",
+    "elo": 1778,
+    "difficulty": "hard",
+    "accuracy": 0.920769544390153,
+    "speed": 1.2175993348233407,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#06b6d4"
+  },
+  "QuantumMind": {
+    "name": "QuantumMind",
+    "elo": 1411,
+    "difficulty": "hard",
+    "accuracy": 0.8920930638409986,
+    "speed": 1.169124578968488,
+    "wins": 1,
+    "losses": 0,
+    "skin": "#ef4444"
+  },
+  "LogicMaster": {
+    "name": "LogicMaster",
+    "elo": 971,
+    "difficulty": "easy",
+    "accuracy": 0.6102808175084291,
+    "speed": 3.701199992830583,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#22c55e"
+  },
+  "BrainWave": {
+    "name": "BrainWave",
+    "elo": 1725,
+    "difficulty": "hard",
+    "accuracy": 0.9298698112049139,
+    "speed": 2.18076525316303,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#f97316"
+  },
+  "SynapseX": {
+    "name": "SynapseX",
+    "elo": 1739,
+    "difficulty": "hard",
+    "accuracy": 0.9189417641529458,
+    "speed": 2.3236152333432845,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#06b6d4"
+  },
+  "CortexPrime": {
+    "name": "CortexPrime",
+    "elo": 1151,
+    "difficulty": "medium",
+    "accuracy": 0.7980503893684483,
+    "speed": 2.807906730307635,
+    "wins": 3,
+    "losses": 0,
+    "skin": "#06b6d4"
+  },
+  "NeuralNet": {
+    "name": "NeuralNet",
+    "elo": 1698,
+    "difficulty": "hard",
+    "accuracy": 0.8603871125579069,
+    "speed": 1.197722843034584,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#22c55e"
+  },
+  "DeepThink": {
+    "name": "DeepThink",
+    "elo": 1359,
+    "difficulty": "medium",
+    "accuracy": 0.7038217196109646,
+    "speed": 3.18026709066009,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#f97316"
+  },
+  "MindStorm": {
+    "name": "MindStorm",
+    "elo": 1013,
+    "difficulty": "easy",
+    "accuracy": 0.6259027679997946,
+    "speed": 3.6614636417845228,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#f97316"
+  },
+  "Cerebro": {
+    "name": "Cerebro",
+    "elo": 1468,
+    "difficulty": "hard",
+    "accuracy": 0.9190418266217821,
+    "speed": 1.995262811911362,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#3b82f6"
+  },
+  "AlphaNode": {
+    "name": "AlphaNode",
+    "elo": 1032,
+    "difficulty": "easy",
+    "accuracy": 0.5473694392250738,
+    "speed": 3.8087014987208496,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#3b82f6"
+  },
+  "BetaPulse": {
+    "name": "BetaPulse",
+    "elo": 1718,
+    "difficulty": "hard",
+    "accuracy": 0.9050229474059411,
+    "speed": 1.3976534664500246,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#ec4899"
+  },
+  "GammaRay": {
+    "name": "GammaRay",
+    "elo": 1493,
+    "difficulty": "hard",
+    "accuracy": 0.883777997415322,
+    "speed": 1.4388296956527,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#f97316"
+  },
+  "DeltaForce": {
+    "name": "DeltaForce",
+    "elo": 802,
+    "difficulty": "easy",
+    "accuracy": 0.6456790834941472,
+    "speed": 3.678393562687729,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#3b82f6"
+  },
+  "OmegaMind": {
+    "name": "OmegaMind",
+    "elo": 877,
+    "difficulty": "easy",
+    "accuracy": 0.6221270801782701,
+    "speed": 4.1560213516095,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#ef4444"
+  },
+  "Zenith": {
+    "name": "Zenith",
+    "elo": 871,
+    "difficulty": "easy",
+    "accuracy": 0.5319005247916443,
+    "speed": 4.778421688300394,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#ec4899"
+  },
+  "ApexBrain": {
+    "name": "ApexBrain",
+    "elo": 908,
+    "difficulty": "easy",
+    "accuracy": 0.5416244638607178,
+    "speed": 4.3326453312687985,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#ec4899"
+  },
+  "Vertex": {
+    "name": "Vertex",
+    "elo": 1217,
+    "difficulty": "medium",
+    "accuracy": 0.7402397517332133,
+    "speed": 2.1497914410974355,
+    "wins": 5,
+    "losses": 0,
+    "skin": "#06b6d4"
+  },
+  "Nexus": {
+    "name": "Nexus",
+    "elo": 1426,
+    "difficulty": "hard",
+    "accuracy": 0.9277846396719183,
+    "speed": 1.7334946115484127,
+    "wins": 0,
+    "losses": 0,
+    "skin": "#fbbf24"
+  },
+  "PrimeIntellect": {
+    "name": "PrimeIntellect",
+    "elo": 1307,
+    "difficulty": "easy",
+    "accuracy": 0.5540760506681,
+    "speed": 4.438259729969844,
+    "wins": 21,
+    "losses": 0,
+    "skin": "#22c55e"
+  }
+}

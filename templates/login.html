@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Trainer - Вход</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white; font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        }
+        .login-container {
+            max-width: 450px; width: 90%; padding: 40px;
+            background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px);
+            border-radius: 24px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.2); text-align: center;
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .login-logo { margin-bottom: 20px; }
+        .login-logo i {
+            font-size: 60px; background: linear-gradient(135deg, #38bdf8, #22c55e);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
+        }
+        .login-container h1 { font-size: 32px; margin-bottom: 8px; font-weight: 600; }
+        .login-subtitle { color: #94a3b8; margin-bottom: 30px; font-size: 14px; }
+        .avatar-section { margin-bottom: 25px; }
+        .avatar-label { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 12px; }
+        .avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px; }
+        .avatar-option {
+            aspect-ratio: 1; border-radius: 16px; cursor: pointer;
+            transition: all 0.2s ease; border: 3px solid transparent;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: bold; color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .avatar-option:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .avatar-option.selected { border-color: white; box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); transform: scale(1.05); }
+        .avatar-option i { font-size: 24px; color: rgba(255,255,255,0.9); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .avatar-preview { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 20px; }
+        .preview-avatar {
+            width: 80px; height: 80px; border-radius: 20px; display: flex;
+            align-items: center; justify-content: center; font-size: 40px;
+            font-weight: bold; color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        .preview-avatar i { font-size: 36px; color: rgba(255,255,255,0.9); }
+        .preview-text { text-align: left; }
+        .preview-text span { display: block; color: #94a3b8; font-size: 12px; }
+        .preview-text strong { font-size: 18px; color: white; }
+        .input-group { margin-bottom: 25px; text-align: left; }
+        .input-group label { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 8px; }
+        .input-group input {
+            width: 100%; padding: 14px 18px; font-size: 16px; border-radius: 12px;
+            border: 2px solid #334155; background: #0f172a; color: white;
+            outline: none; transition: all 0.2s;
+        }
+        .input-group input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        .input-group input::placeholder { color: #64748b; }
+        .login-btn {
+            width: 100%; padding: 14px; font-size: 16px; font-weight: bold;
+            border-radius: 12px; border: none; background: linear-gradient(135deg, #38bdf8, #22c55e);
+            color: #0f172a; cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); }
+        .login-btn:active { transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo"><i class="fas fa-brain"></i></div>
+        <h1>Brain Trainer</h1>
+        <p class="login-subtitle">Тренируй свой мозг каждый день</p>
+
+        <form method="POST" id="loginForm">
+            <input type="hidden" name="avatar_color" id="avatarColorInput" value="#ef4444">
+            <input type="hidden" name="avatar_icon" id="avatarIconInput" value="fa-user-astronaut">
+
+            <div class="avatar-section">
+                <label class="avatar-label"><i class="fas fa-user-circle"></i> Выбери аватар</label>
+                <div class="avatar-grid" id="avatarGrid">
+                    <div class="avatar-option selected" data-color="#ef4444" data-icon="fa-user-astronaut" data-name="Астронавт" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#f97316" data-icon="fa-user-ninja" data-name="Ниндзя" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#fbbf24" data-icon="fa-user-secret" data-name="Агент" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#22c55e" data-icon="fa-user-tie" data-name="Бизнесмен" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#06b6d4" data-icon="fa-user-graduate" data-name="Студент" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#3b82f6" data-icon="fa-user-pilot" data-name="Пилот" onclick="selectAvatar(this)">
+                        <i class="fas fa-user-pilot"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#8b5cf6" data-icon="fa-music" data-name="Музыкант" onclick="selectAvatar(this)">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="avatar-option" data-color="#ec4899" data-icon="fa-crown" data-name="Король" onclick="selectAvatar(this)">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                </div>
+
+                <div class="avatar-preview">
+                    <div class="preview-avatar" id="avatarPreview" style="background: #ef4444;">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="preview-text">
+                        <span>Твой аватар</span>
+                        <strong id="avatarName">Астронавт</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-signature"></i> Твоё имя</label>
+                <input type="text" name="username" placeholder="Введи своё имя" required autofocus>
+            </div>
+
+            <button type="submit" class="login-btn"><i class="fas fa-arrow-right"></i> Начать тренировку</button>
+        </form>
+    </div>
+
+    <script>
+        function selectAvatar(element) {
+            document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+
+            const color = element.dataset.color;
+            const icon = element.dataset.icon;
+            const name = element.dataset.name;
+
+            const preview = document.getElementById('avatarPreview');
+            preview.style.background = color;
+            preview.innerHTML = `<i class="fas ${icon}"></i>`;
+
+            document.getElementById('avatarName').textContent = name;
+            document.getElementById('avatarColorInput').value = color;
+            document.getElementById('avatarIconInput').value = icon;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Brain Trainer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Обучающее модальное окно -->
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <div class="tutorial-header">
+                <h2 id="tutorialTitle">{{ title }}</h2>
+                <button class="tutorial-close" onclick="closeTutorial()">&times;</button>
+            </div>
+            <div class="tutorial-body" id="tutorialBody">
+                <!-- Заполняется через JS -->
+            </div>
+            <div class="tutorial-footer">
+                <label class="dont-show-again">
+                    <input type="checkbox" id="dontShowAgain">
+                    <span>Больше не показывать</span>
+                </label>
+                <button class="tutorial-start" onclick="startGame()">Начать игру</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left" id="sidebar">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+                <span>BrainTrainer</span>
+            </div>
+            <div class="category">
+                <div class="category-title">
+                    <i class="fas fa-calculator"></i>
+                    <span>Математика</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="category-items">
+                    <a href="/game/math" class="{{ 'active' if mode == 'math' else '' }}"><i class="fas fa-bolt"></i><span>Быстрый счёт</span></a>
+                    <a href="/game/math_chain" class="{{ 'active' if mode == 'math_chain' else '' }}"><i class="fas fa-link"></i><span>Цепочки</span></a>
+                    <a href="/game/math_compare" class="{{ 'active' if mode == 'math_compare' else '' }}"><i class="fas fa-balance-scale"></i><span>Сравнение</span></a>
+                </div>
+            </div>
+            <div class="category">
+                <div class="category-title">
+                    <i class="fas fa-brain"></i>
+                    <span>Память</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="category-items">
+                    <a href="/game/memory_digits" class="{{ 'active' if mode == 'memory_digits' else '' }}"><i class="fas fa-memory"></i><span>Цифры</span></a>
+                    <a href="/game/memory_words" class="{{ 'active' if mode == 'memory_words' else '' }}"><i class="fas fa-font"></i><span>Слова</span></a>
+                    <a href="/game/memory_positions" class="{{ 'active' if mode == 'memory_positions' else '' }}"><i class="fas fa-map-marker-alt"></i><span>Позиции</span></a>
+                </div>
+            </div>
+            <div class="category">
+                <div class="category-title">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Логика</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="category-items">
+                    <a href="/game/logic_sequences" class="{{ 'active' if mode == 'logic_sequences' else '' }}"><i class="fas fa-chart-simple"></i><span>Последовательности</span></a>
+                    <a href="/game/logic_analogies" class="{{ 'active' if mode == 'logic_analogies' else '' }}"><i class="fas fa-code-branch"></i><span>Аналогии</span></a>
+                    <a href="/game/logic_sets" class="{{ 'active' if mode == 'logic_sets' else '' }}"><i class="fas fa-layer-group"></i><span>Множества</span></a>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <a href="/menu" style="display: flex; align-items: center; gap: 16px; padding: 10px 8px; color: #aaa; text-decoration: none;">
+                    <i class="fas fa-home" style="min-width: 24px;"></i>
+                    <span style="opacity: 0; transition: opacity 0.2s;">В меню</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="game-container">
+                <h1>{{ title }}</h1>
+                <div class="hud">
+                    <div class="score-box"><span class="label">Счёт</span><span class="value" id="score">0</span></div>
+                    <div class="combo-box combo-low" id="comboBox"><span id="comboText">x1</span></div>
+                    <div class="timer-box"><span class="label">Время</span><span class="value" id="timer">{{ round_time }}</span></div>
+                </div>
+                <div id="task">Загрузка...</div>
+                <div class="answer-box">
+                    <input type="text" id="answer" placeholder="Ваш ответ" autofocus>
+                    <button onclick="send()">✓</button>
+                </div>
+                <button class="help-btn" onclick="showTutorial()" title="Показать инструкцию">
+                    <i class="fas fa-question"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        if (localStorage.getItem('sidebarExpanded') === 'true') sidebar.classList.add('expanded');
+        menuToggle.onclick = (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('expanded');
+            localStorage.setItem('sidebarExpanded', sidebar.classList.contains('expanded'));
+        };
+        document.querySelectorAll('.category-title').forEach(t => {
+            t.onclick = function() {
+                const cat = this.parentElement;
+                if (!sidebar.classList.contains('expanded')) {
+                    sidebar.classList.add('expanded');
+                    localStorage.setItem('sidebarExpanded', 'true');
+                    setTimeout(() => cat.classList.toggle('open'), 200);
+                } else cat.classList.toggle('open');
+            };
+        });
+        const style = document.createElement('style');
+        style.textContent = `.left.expanded .sidebar-footer a span { opacity: 1 !important; }`;
+        document.head.appendChild(style);
+
+        let currentAnswer = null, startTime = Date.now(), timeLeft = {{ round_time }}, timerInterval;
+        let gameStarted = false;
+        let mode = "{{ mode }}";
+
+        // Обучающие тексты
+        const tutorials = {
+            "math": {
+                title: "⚡ Быстрый счёт",
+                description: "Решайте математические примеры как можно быстрее!",
+                example: "Пример: 25 + 17 = ?",
+                answerExample: "Ответ: 42"
+            },
+            "math_chain": {
+                title: "🔗 Цепочки",
+                description: "Решайте примеры с несколькими действиями. Помните о порядке операций!",
+                example: "Пример: 5 + 3 * 4 = ?",
+                answerExample: "Ответ: 17 (сначала умножение)"
+            },
+            "math_compare": {
+                title: "⚖️ Сравнение",
+                description: "Сравните два выражения и выберите знак: > (больше), < (меньше) или = (равно)",
+                example: "Пример: 5×3 ? 4×4",
+                answerExample: "Ответ: < (15 < 16)"
+            },
+            "memory_digits": {
+                title: "🔢 Память на цифры",
+                description: "Запомните последовательность цифр. Через 2 секунды они исчезнут - введите их в том же порядке.",
+                example: "Пример: 3 7 2 9",
+                answerExample: "Ответ: 3729"
+            },
+            "memory_words": {
+                title: "📝 Память на слова",
+                description: "Запомните слова. Через 2 секунды они исчезнут - введите их через запятую в том же порядке.",
+                example: "Пример: кот • дом • лес",
+                answerExample: "Ответ: кот,дом,лес"
+            },
+            "memory_positions": {
+                title: "🗺️ Память на позиции",
+                description: "Запомните расположение синих квадратов на сетке 3x3. Через 2 секунды они исчезнут - введите координаты через запятую (например: 0,0,1,2,2,1)",
+                example: "Пример: Запомните позиции на сетке",
+                answerExample: "Ответ: 0,0,1,2,2,1 (x,y для каждой клетки, нумерация с 0)"
+            },
+            "logic_sequences": {
+                title: "📊 Последовательности",
+                description: "Найдите закономерность в последовательности чисел и введите следующее число.",
+                example: "Пример: 2, 4, 6, 8, ?",
+                answerExample: "Ответ: 10"
+            },
+            "logic_analogies": {
+                title: "🔄 Аналогии",
+                description: "Найдите связь между первой парой и примените её ко второй.",
+                example: "Пример: кошка : котенок = собака : ?",
+                answerExample: "Ответ: щенок"
+            },
+            "logic_sets": {
+                title: "🎯 Множества",
+                description: "Найдите лишний элемент в списке.",
+                example: "Пример: яблоко • банан • апельсин • огурец",
+                answerExample: "Ответ: огурец (это овощ, остальное фрукты)"
+            }
+        };
+
+        function showTutorial() {
+            const modal = document.getElementById('tutorialModal');
+            const tutorial = tutorials[mode] || {title: mode, description: "Описание игры", example: "", answerExample: ""};
+
+            document.getElementById('tutorialTitle').textContent = tutorial.title;
+            document.getElementById('tutorialBody').innerHTML = `
+                <p class="tutorial-description">${tutorial.description}</p>
+                <div class="tutorial-example">
+                    <p>${tutorial.example}</p>
+                    <p class="tutorial-answer">${tutorial.answerExample}</p>
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeTutorial() {
+            if (!gameStarted) {
+                window.location.href = '/menu';
+                return;
+            }
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+
+        function startGame() {
+            const dontShow = document.getElementById('dontShowAgain').checked;
+            if (dontShow) {
+                localStorage.setItem(`tutorial_${mode}_hidden`, 'true');
+            }
+            document.getElementById('tutorialModal').style.display = 'none';
+            if (!gameStarted) {
+                gameStarted = true;
+                startTimer();
+                loadTask();
+                document.getElementById('answer').focus();
+            }
+        }
+
+        // Проверяем, нужно ли показывать обучение
+        const tutorialHidden = localStorage.getItem(`tutorial_${mode}_hidden`);
+        if (!tutorialHidden) {
+            showTutorial();
+        } else {
+            gameStarted = true;
+            startTimer();
+            loadTask();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    window.location.href = '/result';
+                }
+            }, 1000);
+        }
+
+        async function loadTask() {
+            let res = await fetch(`/task/${mode}`);
+            let data = await res.json();
+            let task = document.getElementById("task");
+            task.innerHTML = "";
+
+            if (data.type === "math" || data.type === "compare") {
+                task.innerText = data.q;
+                currentAnswer = data.a;
+            }
+            else if (data.type === "memory") {
+                task.innerText = data.seq.join(" ");
+                currentAnswer = data.a;
+                setTimeout(() => task.innerText = "???", 2000);
+            }
+            else if (data.type === "memory_words") {
+                task.innerText = data.seq.join(" • ");
+                currentAnswer = data.a;
+                setTimeout(() => task.innerText = "???", 2000);
+            }
+            else if (data.type === "memory_positions") {
+                let gridHtml = '<div class="memory-grid">';
+                for(let i = 0; i < 3; i++) {
+                    gridHtml += '<div class="memory-row">';
+                    for(let j = 0; j < 3; j++) {
+                        let isFilled = data.seq.includes(`${j},${i}`) || data.seq.includes(`${j},${i}`);
+                        gridHtml += `<div class="memory-cell ${isFilled ? 'filled' : ''}"></div>`;
+                    }
+                    gridHtml += '</div>';
+                }
+                gridHtml += '</div>';
+                task.innerHTML = gridHtml;
+                currentAnswer = data.a;
+                setTimeout(() => {
+                    task.innerHTML = '<div class="memory-grid"><div class="memory-row"><div class="memory-cell"></div><div class="memory-cell"></div><div class="memory-cell"></div></div><div class="memory-row"><div class="memory-cell"></div><div class="memory-cell"></div><div class="memory-cell"></div></div><div class="memory-row"><div class="memory-cell"></div><div class="memory-cell"></div><div class="memory-cell"></div></div></div>';
+                }, 2000);
+            }
+            else if (data.type === "logic") {
+                task.innerText = data.seq.join(", ") + ", ?";
+                currentAnswer = data.a;
+            }
+            else if (data.type === "analogy") {
+                task.innerHTML = `${data.q}<br><span style="font-size: 18px; color: #94a3b8;">${data.options.join(' • ')}</span>`;
+                currentAnswer = data.a;
+            }
+            else if (data.type === "sets") {
+                task.innerHTML = `${data.items.join(' • ')}<br><span style="font-size: 16px; color: #94a3b8;">Что лишнее?</span>`;
+                currentAnswer = data.a;
+            }
+            startTime = Date.now();
+        }
+
+        async function send() {
+            if (!gameStarted) return;
+            let answer = document.getElementById("answer").value;
+            if (!answer) return;
+            let time = (Date.now() - startTime) / 1000;
+            let res = await fetch("/check", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ answer, correct: currentAnswer, time })
+            });
+            let data = await res.json();
+            document.getElementById("score").innerText = data.score;
+            let combo = data.combo;
+            let comboBox = document.getElementById("comboBox");
+            document.getElementById("comboText").innerText = "x" + combo;
+            comboBox.className = "combo-box";
+            if (combo < 3) comboBox.classList.add("combo-low");
+            else if (combo < 6) comboBox.classList.add("combo-mid");
+            else if (combo < 10) comboBox.classList.add("combo-high");
+            else comboBox.classList.add("combo-god");
+            animate(data.correct);
+            document.getElementById("answer").value = "";
+            loadTask();
+        }
+
+        function animate(correct) {
+            let body = document.body, task = document.getElementById("task"), input = document.getElementById("answer");
+            body.classList.remove('correct-answer', 'wrong-answer');
+            task.classList.remove('correct-task', 'wrong-task');
+            input.classList.remove('correct-input', 'wrong-input');
+            void body.offsetWidth;
+            if (correct) {
+                body.classList.add('correct-answer');
+                task.classList.add('correct-task');
+                input.classList.add('correct-input');
+                showFeedback('✓', true);
+            } else {
+                body.classList.add('wrong-answer');
+                task.classList.add('wrong-task');
+                input.classList.add('wrong-input');
+                showFeedback('✗', false);
+            }
+            setTimeout(() => {
+                body.classList.remove('correct-answer', 'wrong-answer');
+                task.classList.remove('correct-task', 'wrong-task');
+                input.classList.remove('correct-input', 'wrong-input');
+            }, 400);
+        }
+
+        function showFeedback(symbol, isCorrect) {
+            const old = document.querySelector('.answer-feedback');
+            if (old) old.remove();
+            const fb = document.createElement('div');
+            fb.className = 'answer-feedback ' + (isCorrect ? 'correct' : 'wrong');
+            fb.textContent = symbol;
+            document.body.appendChild(fb);
+            setTimeout(() => fb.remove(), 400);
+        }
+
+        document.getElementById("answer").addEventListener("keydown", e => {
+            if (e.key === "Enter") send();
+        });
+    </script>
+</body>
+</html>
